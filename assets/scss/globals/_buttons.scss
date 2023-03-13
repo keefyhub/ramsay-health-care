@@ -1,0 +1,32 @@
+.button {
+    background-color: $denim;
+    border: 1px solid $denim;
+    color: $white;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 700;
+    min-width: 140px;
+    opacity: 1;
+    padding: 0.4rem 0.6rem;
+    transition: background-color $default-transition-timing, color $default-transition-timing;
+
+    &:hover {
+        background-color: $white;
+        color: $denim;
+    }
+
+    &--outline {
+        background-color: $white;
+        color: $black;
+
+        &:hover {
+            background-color: $denim;
+            color: $white;
+        }
+    }
+
+    &.is-hidden {
+        @include visually-hidden();
+    }
+}

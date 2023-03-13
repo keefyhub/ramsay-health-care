@@ -1,0 +1,41 @@
+.banner {
+    background-color: red;
+    padding: 10rem 0;
+
+    &__header {
+        color: $white;
+    }
+
+    .standard-form {
+        background-color: $white;
+        display: flex;
+
+        .form-fields {
+            flex-wrap: nowrap;
+            width: 70%;
+            padding: 10px;
+
+            // button:not(.browser-default):not(.button),
+            // input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
+            // select,
+            // textarea {
+            //     border: 0;
+            // }
+        }
+
+        .form-actions {
+            margin-top: 0;
+            width: 30%;
+
+            .button {
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: #{$max-width}) {
+    .banner {
+    }
+}

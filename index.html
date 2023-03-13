@@ -1,0 +1,84 @@
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>{{Title}}</title>
+    <meta name="Description" content="{{Description}}">
+
+    <link rel="stylesheet" href="./dist/css/style.css" />
+    <link rel="canonical" href="{{URL}}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree&display=swap" rel="stylesheet">
+    <!-- Add OG meta data -->
+
+    <!-- Add favicons and manifest -->
+</head>
+
+<body>
+    <main class="">
+        <section class="banner content-section">
+            <div class="container">
+                <div class="banner__content">
+                    <div class="banner__header u-text-center">
+                        <h1>Search for a specialist</h1>
+                    </div>
+                    <div class="banner__form">
+                        <form class="standard-form">
+                            <div class="form-fields">
+                                <div class="form-row is-required">
+                                    <label for="treatment">Enter treatment name<span>*</span></label>
+                                    <div class="form-input">
+                                        <input id="treatment" name="treatment" type="text" value="Hip" required>
+                                    </div>
+                                </div>
+                                <div class="form-row is-required">
+                                    <label for="postcode">Enter postcode or city<span>*</span></label>
+                                    <div class="form-input">
+                                        <input id="postcode" name="postcode" type="text" value="Stansted CM24 1RW, UK"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button class="button">Find Specialist</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="results content-section">
+            <div class="social-sharing">Scrolling thingy</div>
+            <div class="container">
+                <div class="results__header">
+                    <h1>Search Results</h1>
+                    <div class="">
+                        <p>Displaying results for Hip near Stansted CM24 1RW, UK</p>
+                        <span>Clear Search</span>
+                    </div>
+                </div>
+                <div class="results__content" data-behaviour="populate-results"></div>
+                <nav class="pagination-container">
+                    <div class="" id="showing-count"></div>
+                    <button class="pagination-button" id="first-button" aria-label="First page"
+                        title="First page">&lt;&lt;</button>
+                    <button class="pagination-button" id="prev-button" aria-label="Previous page"
+                        title="Previous page">&lt;</button>
+                    <div id="pagination-numbers"></div>
+                    <button class="pagination-button" id="next-button" aria-label="Next page"
+                        title="Next page">&gt;</button>
+                    <button class="pagination-button" id="last-button" aria-label="Last page"
+                        title="Last page">&gt;&gt;</button>
+                </nav>
+            </div>
+        </section>
+    </main>
+</body>
+<script src="./dist/js/main.js"></script>
+
+</html>

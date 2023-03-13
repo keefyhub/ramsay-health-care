@@ -1,0 +1,14 @@
+*.css
+*.js
+*.map
+
+node_modules
+
+*.lock
+.DS_Store
+
+!gulpfile.js
+!/assets/**/*.js
+!/dist/**/*.js
+!/dist/**/*.css
+!.gitkeep
