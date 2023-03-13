@@ -1,7 +1,7 @@
 import RemoveFocusState from "remove-focus-state";
 new RemoveFocusState();
 
-require('./modules/test');
+require('./modules/animate-when-visible');
 require('./modules/search-results');
 
 const noJS = document.getElementsByClassName("no-js")[0];

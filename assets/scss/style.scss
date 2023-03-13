@@ -7,6 +7,7 @@ $image-path: './images' !default;
 @import 'tools/grid',
         'tools/mixins',
         'tools/utilities',
+        'tools/animations',
         'tools/wordpress-core';
 
 @import 'globals/reset',

@@ -25,7 +25,7 @@ if (cachedHits !== 'undefined' && (hoursBetween(Math.floor(now), parseInt(cached
 
 function generateResults(results) {
     results.map((item, index) => {
-        resultsElement.innerHTML += `<article data-key="${index}">
+        resultsElement.innerHTML += `<article data-key="${index}" class="will-animate fadeInUp" data-behaviour="animate-when-visible">
             <h2>${item.Title}</h2>
             <img src="${item.ProfileImage}">
             <p>${item.Hospital}</p>
@@ -128,24 +128,34 @@ function setShowingResultsCount() {
     document.querySelector("#showing-count").innerHTML = `<div class="pagination-label">Showing posts ${first} - ${last} of ${resultsCount}</div>`
 }
 
+function scrollToTop() {
+    // NOTE - Might remove this
+    // Scroll to top of results when pagination changes
+    resultsElement.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+}
+
 window.addEventListener("load", () => {
     getPaginationNumbers();
     setCurrentPage(1);
 
     firstButton.addEventListener("click", () => {
         setCurrentPage(1);
+        scrollToTop();
     });
 
     nextButton.addEventListener("click", () => {
         setCurrentPage(currentPage + 1);
+        scrollToTop();
     });
 
     prevButton.addEventListener("click", () => {
         setCurrentPage(currentPage - 1);
+        scrollToTop();
     });
 
     lastButton.addEventListener("click", () => {
         setCurrentPage(pageCount);
+        scrollToTop();
     });
 
     document.querySelectorAll(".pagination-number").forEach((button) => {
@@ -154,6 +164,7 @@ window.addEventListener("load", () => {
         if (pageIndex) {
             button.addEventListener("click", function () {
                 setCurrentPage(pageIndex);
+                scrollToTop();
             });
         }
     });
