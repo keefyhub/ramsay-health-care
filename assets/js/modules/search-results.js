@@ -42,6 +42,7 @@ function hoursBetween(d1, d2) {
     return Math.abs(d1 - d2) / (60 * 60);
 };
 
+// Mostly taken from here but adapted - https://codepen.io/tutsplus/pen/poaQEeq
 const paginationNumbers = document.getElementById("pagination-numbers");
 const paginatedList = document.querySelector("[data-behaviour='populate-results']");
 const listItems = paginatedList.querySelectorAll("article");
