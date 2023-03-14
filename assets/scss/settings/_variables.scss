@@ -1,4 +1,5 @@
 // Global
+// NOTE - using `Figtree` font as this is a close replacement for Proxima Nova (adobe font)
 $body-font-stack: "Figtree", sans-serif;
 $section-margin: 4rem;
 $section-margin-mobile: 2rem;
@@ -13,9 +14,11 @@ $default-animation-timing: 1s;
 $black: #000;
 $white: #fff;
 $denim: #1175B9;
+$downriver: #0D304F;
+$san-juan: #395772;
 
 // Breakpoint sizes
-$min-width: 320px;
-$max-width: 800px;
+$min-width: 375px;
+$max-width: 1170px;
 $min-font: 14px;
 $max-font: 16px;

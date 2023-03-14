@@ -4,11 +4,12 @@
     color: $white;
     cursor: pointer;
     display: inline-block;
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: fluid-unit(12);
+    font-weight: 600;
     min-width: 140px;
     opacity: 1;
     padding: 0.4rem 0.6rem;
+    text-transform: uppercase;
     transition: background-color $default-transition-timing, color $default-transition-timing;
 
     &:hover {
@@ -24,6 +25,10 @@
             background-color: $denim;
             color: $white;
         }
+    }
+
+    &--large {
+        font-size: fluid-unit(18);
     }
 
     &.is-hidden {

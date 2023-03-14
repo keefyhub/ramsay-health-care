@@ -8,7 +8,6 @@ window.addEventListener("scroll", () => {
 
 function checkForAnimations() {
     document.querySelectorAll('[data-behaviour="animate-when-visible"]:not(.animate)').forEach((item) => {
-        console.log(item.dataset);
         // Default offset is 20px
         const offset = item.dataset.animationOffSet ? item.dataset.animationOffSet : 20;
         const animationDelay = item.dataset.animationDelay ? item.dataset.animationDelay : 0;

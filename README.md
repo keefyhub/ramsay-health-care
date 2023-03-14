@@ -19,3 +19,7 @@ IntelliSense for CSS class names in HTML
 Name that color
 Prettier
 SCSS IntelliSense
+
+## NOTES
+- Issue requesting data from API using localhost so using a proxy server and caching results (`https://allorigins.win/`)
+- Using `Figtree` font as this is a close replacement for Proxima Nova (adobe font)
