@@ -72,6 +72,10 @@ $main-menu-padding: fluid-unit(32px);
         margin-left: $gutter-width;
     }
 
+    .navigation-contact {
+        display: none;
+    }
+
     &__hamburger {
         align-items: center;
         cursor: pointer;
