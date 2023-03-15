@@ -1,14 +1,61 @@
 // Issue with CORS on localhost, using proxy server and caching results to avoid continuous requests
-const resultsElement = document.querySelector('[data-behaviour="populate-results"');
+const resultsElement = document.querySelector("[data-behaviour='populate-results']");
 const key = 'results';
 const cachedHits = localStorage.getItem(key);
 const cachedTimeStamp = localStorage.getItem(`${key}_timestamp`);
 const now = new Date().getTime() / 1000;
 let resultsCount = 0;
+let currentPage = 1;
+const firstButton = document.querySelector("[data-pagination-button='first-button']");
+const prevButton = document.querySelector("[data-pagination-button='prev-button']");
+const nextButton = document.querySelector("[data-pagination-button='next-button']");
+const lastButton = document.querySelector("[data-pagination-button='last-button']");
+const paginationLimit = 10;
+
+// Fire event after results have loaded to build pagination
+const triggerEvent = new Event("buildPagination");
+
+// Set event listener before fetch
+resultsElement.addEventListener("buildPagination", () => {
+    getPaginationNumbers();
+    setCurrentPage(1);
+
+    firstButton.addEventListener("click", () => {
+        setCurrentPage(1);
+        scrollToTop();
+    });
+
+    nextButton.addEventListener("click", () => {
+        setCurrentPage(currentPage + 1);
+        scrollToTop();
+    });
+
+    prevButton.addEventListener("click", () => {
+        setCurrentPage(currentPage - 1);
+        scrollToTop();
+    });
+
+    lastButton.addEventListener("click", () => {
+        setCurrentPage();
+        scrollToTop();
+    });
+
+    document.querySelectorAll(".pagination-number").forEach((button) => {
+        const pageIndex = Number(button.getAttribute("page-index"));
+
+        if (pageIndex) {
+            button.addEventListener("click", function () {
+                setCurrentPage(pageIndex);
+                scrollToTop();
+            });
+        }
+    });
+});
 
 // Set results for a week (just for testing)
 if (cachedHits !== 'undefined' && (hoursBetween(Math.floor(now), parseInt(cachedTimeStamp)) <= 24 * 7)) {
     generateResults(JSON.parse(cachedHits));
+    resultsElement.dispatchEvent(triggerEvent);
 } else {
     fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://gc-interview.azurewebsites.net/api/consultantlisting')}`)
         .then(response => {
@@ -20,9 +67,7 @@ if (cachedHits !== 'undefined' && (hoursBetween(Math.floor(now), parseInt(cached
             localStorage.setItem(`${key}_timestamp`, Math.floor(now));
 
             generateResults(JSON.parse(data.contents));
-
-            // Dirty reload on initial request due to pagination issue - look to change this
-            location.reload();
+            resultsElement.dispatchEvent(triggerEvent);
         });
 }
 
@@ -83,18 +128,6 @@ function hoursBetween(d1, d2) {
 };
 
 // Mostly taken from here but adapted - https://codepen.io/tutsplus/pen/poaQEeq
-const paginationNumbers = document.querySelector("[data-behaviour='pagination-numbers']");
-const paginatedList = document.querySelector("[data-behaviour='populate-results']");
-const listItems = paginatedList.querySelectorAll(".result-item");
-const firstButton = document.querySelector("[data-pagination-button='first-button']");
-const prevButton = document.querySelector("[data-pagination-button='prev-button']");
-const nextButton = document.querySelector("[data-pagination-button='next-button']");
-const lastButton = document.querySelector("[data-pagination-button='last-button']");
-
-const paginationLimit = 10;
-const pageCount = Math.ceil(listItems.length / paginationLimit);
-let currentPage = 1;
-
 function disableButton(button) {
     button.classList.add("disabled");
     button.setAttribute("disabled", true);
@@ -105,7 +138,11 @@ function enableButton(button) {
     button.removeAttribute("disabled");
 };
 
-function handlePageButtonsStatus() {
+function handlePageButtonsStatus(pageNum) {
+    const listItems = document.querySelectorAll(".result-item");
+    const currentPage = pageNum;
+    const pageCount = Math.ceil(listItems.length / paginationLimit);
+
     if (currentPage === 1) {
         disableButton(firstButton);
         disableButton(prevButton);
@@ -135,20 +172,25 @@ function handleActivePageNumber() {
 };
 
 function appendPageNumber(index) {
+    const paginationNumbers = document.querySelector("[data-behaviour='pagination-numbers']");
+
     paginationNumbers.innerHTML += `<button class="pagination-number" page-index="${index}">${index}</button>`;
 };
 
 function getPaginationNumbers() {
+    const listItems = document.querySelectorAll(".result-item");
+    const pageCount = Math.ceil(listItems.length / paginationLimit);
+
     for (let i = 1; i <= pageCount; i++) {
         appendPageNumber(i);
     }
 };
 
 function setCurrentPage(pageNum) {
-    currentPage = pageNum;
+    const listItems = document.querySelectorAll(".result-item");
 
     handleActivePageNumber();
-    handlePageButtonsStatus();
+    handlePageButtonsStatus(pageNum);
     setShowingResultsCount();
 
     const prevRange = (pageNum - 1) * paginationLimit;
@@ -178,39 +220,3 @@ function scrollToTop() {
     // Scroll to top of results when pagination changes
     resultsElement.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
 }
-
-window.addEventListener("load", () => {
-    getPaginationNumbers();
-    setCurrentPage(1);
-
-    firstButton.addEventListener("click", () => {
-        setCurrentPage(1);
-        scrollToTop();
-    });
-
-    nextButton.addEventListener("click", () => {
-        setCurrentPage(currentPage + 1);
-        scrollToTop();
-    });
-
-    prevButton.addEventListener("click", () => {
-        setCurrentPage(currentPage - 1);
-        scrollToTop();
-    });
-
-    lastButton.addEventListener("click", () => {
-        setCurrentPage(pageCount);
-        scrollToTop();
-    });
-
-    document.querySelectorAll(".pagination-number").forEach((button) => {
-        const pageIndex = Number(button.getAttribute("page-index"));
-
-        if (pageIndex) {
-            button.addEventListener("click", function () {
-                setCurrentPage(pageIndex);
-                scrollToTop();
-            });
-        }
-    });
-});
