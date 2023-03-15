@@ -30,4 +30,6 @@ SCSS IntelliSense
 ## TIME RESTRAINTS
 - Would have made the header sticky
 - Due to time constraints there is no tablet view. At 1024px it jumps to mobile (375px). Given more time Id have made it fully responsive
-- media queries have been written inline whereas Id normally put these in the own files and subfolder
+- Media queries have been written inline whereas Id normally put these in the own files and subfolder
+- Footer is missing
+- "View more" functionality on results has been omitted due to time constraints. Also looking at the content provided this might not be required
