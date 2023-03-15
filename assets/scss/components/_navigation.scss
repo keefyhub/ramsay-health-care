@@ -278,6 +278,7 @@ $main-menu-padding: fluid-unit(32px);
 
         &__search {
             @include vertical-center(absolute);
+            font-size: 2rem;
             right: 0;
         }
 
