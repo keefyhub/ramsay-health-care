@@ -7,8 +7,7 @@ $image-path: './images' !default;
 @import 'tools/grid',
         'tools/mixins',
         'tools/utilities',
-        'tools/animations',
-        'tools/wordpress-core';
+        'tools/animations';
 
 @import 'globals/reset',
         'globals/setup',
@@ -23,7 +22,6 @@ $image-path: './images' !default;
 @import 'components/site-header',
         'components/site-footer',
         'components/navigation',
-        'components/user-content',
         'components/banner',
         'components/results',
         'components/image-ctas';
