@@ -20,6 +20,9 @@ if (cachedHits !== 'undefined' && (hoursBetween(Math.floor(now), parseInt(cached
             localStorage.setItem(`${key}_timestamp`, Math.floor(now));
 
             generateResults(JSON.parse(data.contents));
+
+            // Dirty reload on initial request due to pagination issue - look to change this
+            location.reload();
         });
 }
 
