@@ -23,7 +23,7 @@ $main-menu-padding: fluid-unit(32px);
                 display: block;
                 padding: fluid-unit(14);
             }
-            
+
             &.is-active a {
                 background-color: $mystic;
                 color: $downriver;
@@ -71,12 +71,66 @@ $main-menu-padding: fluid-unit(32px);
         justify-content: flex-end;
         margin-left: $gutter-width;
     }
+
+    &__hamburger {
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        height: 32px;
+        left: 1rem;
+        position: absolute;
+        top: calc(50% - 20px);
+        transition: opacity 0.25s linear;
+        width: 32px;
+
+        div,
+        div:before,
+        div:after {
+            background-color: $downriver;
+            height: 4px;
+            transition: all 0.15s linear;
+            width: 32px;
+        }
+
+        div:before,
+        div:after {
+            content: "";
+            position: absolute;
+        }
+
+        div:before {
+            transform: translateY(-250%);
+        }
+
+        div:after {
+            transform: translateY(250%);
+        }
+
+        &.is-active {
+            div {
+                background: transparent;
+            }
+
+            div:before {
+                transform: rotate(45deg);
+            }
+
+            div:after {
+                transform: rotate(-45deg);
+            }
+        }
+
+        // +1px as its min-width
+        @media (min-width: 769px) {
+            display: none;
+        }
+    }
 }
 
 .main-menu {
     // Global menu-item styles
     .menu-item {
-       > a {
+        > a {
             @include link-underline($denim);
             display: block;
             position: relative;
@@ -165,6 +219,75 @@ $main-menu-padding: fluid-unit(32px);
 
         &:hover i {
             transform: translateX(10px);
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .navigation-top {
+        .container {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        &__contact {
+            display: none;
+        }
+    }
+
+    .navigation-main {
+        border-bottom: 1px solid $mystic;
+
+        &__inner {
+            justify-content: center;
+        }
+
+        &__menu {
+            background-color: $white;
+            position: absolute;
+            left: -#{$gutter-width};
+
+            // 1px offset due to border
+            top: calc(100% + 1px);
+            
+            transform: translateX(-100%);
+            transition: transform $default-transition-timing;
+            width: calc(100% + (#{$gutter-width} * 2));
+
+            &.is-active {
+                transform: translateX(0);
+            }
+
+            .main-menu__menu {
+                flex-direction: column;
+
+                .menu-item > a:before {
+                    bottom: 0;
+                }
+            }
+
+            // NOTE - Hiding sub-menus for now
+            .sub-menu {
+                display: none !important;
+            }
+        }
+
+        &__search {
+            @include vertical-center(absolute);
+            right: 0;
+        }
+
+        .navigation-contact {
+            background-color: $downriver;
+            color: $white;
+            align-items: flex-start;
+            display: flex;
+            flex-direction: column;
+            padding: fluid-unit(24px);
+
+            > * {
+                margin-bottom: fluid-unit(12px);
+            }
         }
     }
 }

@@ -73,3 +73,9 @@
         }
     }
 }
+
+@media only screen and (max-width: 1024px) {
+    .image-ctas .image-cta {
+        @include column-with-gutter(12);
+    }
+}

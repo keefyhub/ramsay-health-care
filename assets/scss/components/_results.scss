@@ -12,9 +12,13 @@
         width: 2.5rem;
     }
 
+    &__header {
+        margin-bottom: 1rem;
+    }
+
     &__information {
+        @include grid();
         align-items: center;
-        display: flex;
 
         font-size: fluid-unit(20px);
     }
@@ -36,7 +40,7 @@
         padding-bottom: fluid-unit(50px);
         padding-top: fluid-unit(50px);
         border-top: 1px solid $mystic;
-        
+
         &__wrapper {
             @include grid();
             margin-right: auto;
@@ -94,7 +98,7 @@
 
 .pagination {
     border-top: 1px solid $mystic;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     padding-top: 1rem;
 
     &__container {
@@ -128,5 +132,54 @@
         color: $white;
         background: $denim;
         border-color: $denim;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .results__sidebar {
+        left: 0;
+        height: auto;
+        position: relative;
+        margin-right: 90px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .results {
+        &__sidebar {
+            display: none;
+        }
+
+        &__clear-results {
+            margin-left: 0;
+            display: block;
+            width: 100%;
+        }
+
+        .result-item {
+            &__wrapper,
+            &__actions {
+                margin: 0;
+                width: 100%;
+            }
+
+            &__information {
+                margin: 0;
+                width: 100%;
+            }
+
+            &__image {
+                margin-bottom: 1rem;
+                max-width: 90px;
+            }
+
+            &__element {
+                display: block;
+
+                &:not(:only-of-type):not(:first-of-type) {
+                    margin-left: 0;
+                }
+            }
+        }
     }
 }

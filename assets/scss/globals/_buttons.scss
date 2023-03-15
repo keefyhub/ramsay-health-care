@@ -48,3 +48,9 @@
         flex-flow: column;
     }
 }
+
+@media only screen and (max-width: 1024px) {
+    .button {
+        min-width: 0;
+    }
+}
