@@ -4,14 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
 
-    <title>{{Title}}</title>
-    <meta name="Description" content="{{Description}}">
+    <title>Ramsay Health Care</title>
+    <meta name="Description" content="Description">
 
     <link rel="stylesheet" href="./dist/css/style.css" />
-    <link rel="canonical" href="{{URL}}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Figtree&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
@@ -25,7 +23,28 @@
         <header class="site-header">
             <div class="navigation-top">
                 <div class="container">
-                    Top nav
+                    <div class="navigation-top__inner">
+                        <nav class="navigation-top__links">
+                            <ul class="navigation-top__menu">
+                                <li class="menu-item is-active">
+                                    <a href="#">Patients</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="#">Health Professionals</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="#">Careers</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="navigation-top__contact">
+                            <a class="navigation-top__phone" href="#">
+                                <i class="fa-solid fa-phone"></i>
+                                <span>08082582079</span>
+                            </a>
+                            <a href="#" class="button">Contact Us</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="navigation-main">
@@ -33,8 +52,7 @@
                     <div class="navigation-main__inner">
                         <div class="navigation-main__logo">
                             <a href="#" title="Home">
-                                <img class=""
-                                    src="https://www.v4woodflooring.co.uk/wp-content/themes/v4-flooring/assets/images/logo.png">
+                                <img class="" src="/dist/images/ramsay-logo.jpg">
                             </a>
                         </div>
                         <div class="navigation-main__menu">
@@ -97,14 +115,17 @@
                                                         <a href="#">Womens Health</a>
                                                     </li>
                                                 </ul>
-                                                <a href="#" class="sub-menu__link">View all treatments >></a>
+                                                <a href="#" class="sub-menu__link">
+                                                    <span>View all treatments</span>
+                                                    <i class="fa-solid fa-arrow-right"></i>
+                                                </a>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="menu-item">
                                         <a href="#">Specialists</a>
                                     </li>
-                                    <li class="menu-item">
+                                    <li class="menu-item menu-item--has-children">
                                         <a href="#">For Patients</a>
                                     </li>
                                     <li class="menu-item">
@@ -119,7 +140,12 @@
                                 </ul>
                             </nav>
                         </div>
-                        <div class="navigation-main__search"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <div class="navigation-main__search">
+                            <a href="#">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <span class="u-visually-hidden">Search</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,7 +154,7 @@
             <div class="container">
                 <div class="banner__content">
                     <div class="banner__header u-text-center">
-                        <h1>Search for a specialist</h1>
+                        <h1 class="u-light-bold">Search for a specialist</h1>
                     </div>
                     <div class="banner__form">
                         <form class="standard-form">
@@ -137,6 +163,7 @@
                                     <label for="treatment">Enter treatment name<span>*</span></label>
                                     <div class="form-input">
                                         <input id="treatment" name="treatment" type="text" value="Hip" required>
+                                        <div class="form-input__underline"></div>
                                     </div>
                                 </div>
                                 <div class="form-row is-required">
@@ -144,6 +171,7 @@
                                     <div class="form-input">
                                         <input id="postcode" name="postcode" type="text" value="Stansted CM24 1RW, UK"
                                             required>
+                                        <div class="form-input__underline"></div>
                                     </div>
                                 </div>
                             </div>
@@ -156,45 +184,101 @@
             </div>
         </section>
         <section class="results content-section">
-            <div class="social-sharing">Scrolling thingy</div>
             <div class="container">
-                <div class="results__header">
-                    <h1>Search Results</h1>
-                    <div class="">
-                        <p>Displaying results for Hip near Stansted CM24 1RW, UK</p>
-                        <span>Clear Search</span>
+                <aside class="results__sidebar">
+                    <div class="social-links">
+                        <a class="social-links__item" href="#">
+                            <i class="fa-solid fa-phone"></i>
+                            <span class="u-visually-hidden">08082582079</span>
+                        </a>
+                        <a class="social-links__item" href="#">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span class="u-visually-hidden">Email Us</span>
+                        </a>
+                        <a class="social-links__item" href="#">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span class="u-visually-hidden">Find Us</span>
+                        </a>
                     </div>
-                </div>
-                <div class="results__content" data-behaviour="populate-results"></div>
-                <nav class="pagination-container">
-                    <div class="" id="showing-count"></div>
-                    <button class="pagination-button" id="first-button" aria-label="First page"
-                        title="First page">&lt;&lt;</button>
-                    <button class="pagination-button" id="prev-button" aria-label="Previous page"
-                        title="Previous page">&lt;</button>
-                    <div id="pagination-numbers"></div>
-                    <button class="pagination-button" id="next-button" aria-label="Next page"
-                        title="Next page">&gt;</button>
-                    <button class="pagination-button" id="last-button" aria-label="Last page"
-                        title="Last page">&gt;&gt;</button>
-                </nav>
+                </aside>
+                <main class="results__content">
+                    <div class="results__header">
+                        <h1>Search Results</h1>
+                        <div class="results__information">
+                            <p>Displaying results for: Hip near Stansted CM24 1RW, UK</p>
+                            <a class="results__clear-results" href="#">
+                                <i class="fa-solid fa-square-xmark"></i>
+                                <span>Clear Search</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="results__items" data-behaviour="populate-results"></div>
+                    <nav class="pagination">
+                        <div class="pagination__showing-count" data-behaviour="showing-count"></div>
+                        <div class="pagination__container">
+                            <button class="pagination-button" data-pagination-button="first-button"
+                                aria-label="First page" title="First page">
+                                <i class="fa-solid fa-chevron-left"></i>
+                                <i class="fa-solid fa-chevron-left"></i>
+                                <span class="u-visually-hidden">First page</span>
+                            </button>
+                            <button class="pagination-button" data-pagination-button="prev-button"
+                                aria-label="Previous page" title="Previous page">
+                                <i class="fa-solid fa-chevron-left"></i>
+                                <span class="u-visually-hidden">Previous page</span>
+                            </button>
+                            <div data-behaviour="pagination-numbers"></div>
+                            <button class="pagination-button" data-pagination-button="next-button"
+                                aria-label="Next page" title="Next page">
+                                <i class="fa-solid fa-chevron-right"></i>
+                                <span class="u-visually-hidden">Next page</span>
+                            </button>
+                            <button class="pagination-button" data-pagination-button="last-button"
+                                aria-label="Last page" title="Last page">
+                                <i class="fa-solid fa-chevron-right"></i><i class="fa-solid fa-chevron-right"></i>
+                                <span class="u-visually-hidden">Last page</span>
+                            </button>
+                        </div>
+                    </nav>
+                </main>
             </div>
         </section>
-        <section class="content-section">
+        <section class="image-ctas content-section">
             <div class="container">
-                <h1>Animation tests</h1>
-                <h2 class="will-animate fadeIn" data-behaviour="animate-when-visible">FadeIn</h2>
-                <h2 class="will-animate fadeInUp" data-behaviour="animate-when-visible">FadeInUp</h2>
-                <h2 class="will-animate fadeInLeft" data-behaviour="animate-when-visible">FadeInleft</h2>
-                <h2 class="will-animate fadeInRight" data-behaviour="animate-when-visible">FadeInRight</h2>
-                <h2 class="will-animate fadeIn" data-behaviour="animate-when-visible" data-animation-delay="2s">FadeIn
-                    with 2s delay</h2>
-                <h2 class="will-animate fadeInUp" data-behaviour="animate-when-visible" data-animation-delay="2s">
-                    FadeInUp 2s delay</h2>
-                <h2 class="will-animate fadeInLeft" data-behaviour="animate-when-visible" data-animation-delay="2s">
-                    FadeInleft 2s delay</h2>
-                <h2 class="will-animate fadeInRight" data-behaviour="animate-when-visible" data-animation-delay="2s">
-                    FadeInRight 2s delay</h2>
+                <div class="user-content">
+                    <h1 class="title-3">More from Ramsay Health</h1>
+                </div>
+                <div class="inner-content">
+                    <div class="image-ctas__grid">
+                        <article class="image-cta will-animate fadeInUp" data-behaviour="animate-when-visible"
+                            data-animation-delay=".5s">
+                            <a class="image-cta__link" href="#">
+                                <div class="image-cta__image">
+                                    <img src="/dist/images/orthopedics.jpg">
+                                </div>
+                                <h2 class="image-cta__title">Orthopedics</h2>
+                            </a>
+                        </article>
+                        <article class="image-cta will-animate fadeInUp" data-behaviour="animate-when-visible"
+                            data-animation-delay="1s">
+                            <a class="image-cta__link" href="#">
+                                <div class="image-cta__image">
+                                    <img src="/dist/images/oncology.jpg">
+                                </div>
+                                <h2 class="image-cta__title">Oncology</h2>
+                            </a>
+                        </article>
+                        <article class="image-cta will-animate fadeInUp" data-behaviour="animate-when-visible"
+                            data-animation-delay="1.5s">
+                            <a class="image-cta__link" href="#">
+                                <div class="image-cta__image">
+                                    <img src="/dist/images/general-surgery.jpg">
+                                </div>
+                                <h2 class="image-cta__title">General Surgery</h2>
+                            </a>
+                        </article>
+                    </div>
+                </div>
             </div>
         </section>
     </main>

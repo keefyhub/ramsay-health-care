@@ -195,7 +195,7 @@
 
 // Function to convert px to rem units (based on `$max-font`)
 @function fluid-unit($pixel-value) {
-    @return #{$pixel-value / strip-unit($max-font)}rem;
+    @return #{strip-unit($pixel-value) / strip-unit($max-font)}rem;
 }
 
 // Taken from: https://css-tricks.com/snippets/css/fluid-typography/

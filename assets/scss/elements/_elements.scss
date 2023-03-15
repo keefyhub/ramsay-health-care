@@ -42,27 +42,33 @@
     font-size: 1rem;
 }
 
-h1 {
+h1,
+.title-1 {
     @include h1();
 }
 
-h2 {
+h2,
+.title-2 {
     @include h2();
 }
 
-h3 {
+h3,
+.title-3 {
     @include h3();
 }
 
-h4 {
+h4,
+.title-4 {
     @include h4();
 }
 
-h5 {
+h5,
+.title-5 {
     @include h5();
 }
 
-h6 {
+h6,
+.title-6 {
     @include h6();
 }
 
@@ -72,7 +78,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: normal;
+    font-weight: 500;
     line-height: 1.2;
     margin: 0;
 }

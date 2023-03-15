@@ -25,6 +25,7 @@ $image-path: './images' !default;
         'components/navigation',
         'components/user-content',
         'components/banner',
-        'components/results';
+        'components/results',
+        'components/image-ctas';
 
 @import 'tools/mediaqueries/utilities-mediaqueries';

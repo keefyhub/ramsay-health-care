@@ -1,0 +1,75 @@
+.image-ctas {
+    &__grid {
+        @include grid-with-gutter();
+    }
+
+    .image-cta {
+        @include column-with-gutter(4);
+        position: relative;
+
+        &:hover {
+            .image-cta__link::before {
+                transform: scale(1);
+            }
+
+            .image-cta__link::after {
+                transform: scale(1);
+            }
+
+            .image-cta__image::before {
+                opacity: 0;
+            }
+        }
+
+        &__link {
+            display: block;
+            position: relative;
+
+            &::before,
+            &::after {
+                background-color: transparent;
+                bottom: 10px;
+                content: "";
+                cursor: pointer;
+                height: calc(100% - 20px);
+                left: 10px;
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                transition: transform 0.3s;
+                width: calc(100% - 20px);
+                z-index: 11;
+            }
+
+            &::before {
+                border: {
+                    bottom: 2px solid $denim;
+                    top: 2px solid $denim;
+                }
+                transform: scale(0, 1);
+            }
+
+            &::after {
+                border: {
+                    left: 2px solid $denim;
+                    right: 2px solid $denim;
+                }
+                transform: scale(1, 0);
+            }
+        }
+
+        &__image {
+            img {
+                width: 100%;
+            }
+        }
+
+        &__title {
+            left: 25px;
+            max-width: fluid-unit(360);
+            position: absolute;
+            top: 25px;
+            z-index: 15;
+        }
+    }
+}

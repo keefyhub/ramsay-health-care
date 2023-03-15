@@ -4,11 +4,12 @@
     color: $white;
     cursor: pointer;
     display: inline-block;
-    font-size: fluid-unit(12);
+    font-size: fluid-unit(12px);
     font-weight: 600;
     min-width: 140px;
     opacity: 1;
-    padding: 0.4rem 0.6rem;
+    padding: fluid-unit(16px);
+    text-align: center;
     text-transform: uppercase;
     transition: background-color $default-transition-timing, color $default-transition-timing;
 
@@ -28,10 +29,22 @@
     }
 
     &--large {
-        font-size: fluid-unit(18);
+        font-size: fluid-unit(18px);
     }
 
     &.is-hidden {
         @include visually-hidden();
+    }
+}
+
+.button-grid {
+    @include grid-with-gutter(0.5rem);
+
+    > * {
+        margin: 0.5rem;
+    }
+
+    &--column {
+        flex-flow: column;
     }
 }

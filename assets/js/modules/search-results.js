@@ -25,13 +25,50 @@ if (cachedHits !== 'undefined' && (hoursBetween(Math.floor(now), parseInt(cached
 
 function generateResults(results) {
     results.map((item, index) => {
-        resultsElement.innerHTML += `<article data-key="${index}" class="will-animate fadeInUp" data-behaviour="animate-when-visible">
-            <h2>${item.Title}</h2>
-            <img src="${item.ProfileImage}">
-            <p>${item.Hospital}</p>
-            <p>${item.PhoneNo}</p>
-            <p>${item.Specialty}</p>
-            <p>${item.ProfessionalBackground}</p>
+        resultsElement.innerHTML += `<article data-key="${index}" class="result-item will-animate fadeInUp" data-behaviour="animate-when-visible">
+            <div class="result-item__wrapper">
+                <div class="result-item__image">
+                    <img src="${item.ProfileImage}">
+                </div>
+                <div class="result-item__information">
+                    <h2>${item.Title} - ${item.Specialty}</h2>
+                    <div class="result-item__contact">
+                        <span class="result-item__element">
+                            <i class="fa-solid fa-circle-h u-highlight"></i>
+                            <span>Based at ${item.Hospital} - 9Miles</span>
+                        </span>
+                        <div class="result-item__links u-highlight">
+                            <span class="result-item__element">
+                                <a href="#">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <span>${item.PhoneNo}</span>
+                                </a>
+                            </span>
+                            <span class="result-item__element">
+                                <a href="#">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    <span>Go to hospital website</span>
+                                </a>
+                            </span>
+                            <span class="result-item__element">
+                                <a href="#">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    <span>Get Directions</span>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="result-item__content">
+                    <p>${item.ProfessionalBackground}</p>
+                </div>
+            </div>
+            <div class="result-item__actions">
+                <div class="button-grid button-grid--column">
+                    <a class="button button--outline" href="#">View full profile</a>
+                    <a class="button" href="#">Book an appointment</a>
+                </div>
+            </div>
         </article>`;
     });
 
@@ -43,13 +80,13 @@ function hoursBetween(d1, d2) {
 };
 
 // Mostly taken from here but adapted - https://codepen.io/tutsplus/pen/poaQEeq
-const paginationNumbers = document.getElementById("pagination-numbers");
+const paginationNumbers = document.querySelector("[data-behaviour='pagination-numbers']");
 const paginatedList = document.querySelector("[data-behaviour='populate-results']");
-const listItems = paginatedList.querySelectorAll("article");
-const firstButton = document.getElementById("first-button");
-const prevButton = document.getElementById("prev-button");
-const nextButton = document.getElementById("next-button");
-const lastButton = document.getElementById("last-button");
+const listItems = paginatedList.querySelectorAll(".result-item");
+const firstButton = document.querySelector("[data-pagination-button='first-button']");
+const prevButton = document.querySelector("[data-pagination-button='prev-button']");
+const nextButton = document.querySelector("[data-pagination-button='next-button']");
+const lastButton = document.querySelector("[data-pagination-button='last-button']");
 
 const paginationLimit = 10;
 const pageCount = Math.ceil(listItems.length / paginationLimit);
@@ -115,9 +152,9 @@ function setCurrentPage(pageNum) {
     const currRange = pageNum * paginationLimit;
 
     listItems.forEach((item, index) => {
-        item.classList.add("hidden");
+        item.classList.add("is-hidden");
         if (index >= prevRange && index < currRange) {
-            item.classList.remove("hidden");
+            item.classList.remove("is-hidden");
         }
     });
 };
@@ -126,7 +163,11 @@ function setShowingResultsCount() {
     let first = (((currentPage - 1) * paginationLimit) + 1);
     let last = first + paginationLimit - 1;
     last = last <= resultsCount ? last : resultsCount;
-    document.querySelector("#showing-count").innerHTML = `<div class="pagination-label">Showing posts ${first} - ${last} of ${resultsCount}</div>`
+    document.querySelector("[data-behaviour='showing-count']").innerHTML = `<div class="showing-count__content">Showing <span class="u-highlight">${first}</span> - <span class="u-highlight">${last}</span> of <span class="u-highlight">${resultsCount}</span> ${pluralize(resultsCount, 'result', 'results')}</div>`
+}
+
+function pluralize(value, single, plural,) {
+    return `${value > 1 ? plural : single}`;
 }
 
 function scrollToTop() {

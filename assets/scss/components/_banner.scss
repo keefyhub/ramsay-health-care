@@ -1,9 +1,17 @@
 .banner {
-    background-color: red;
-    padding: 10rem 0;
+    @include background-cover();
+    @include image-overlay();
+    background-image: url('/dist/images/specialist-banner.jpg');
+    padding-bottom: 4.75rem;
+    padding-top: 4.75rem;
 
     &__header {
         color: $white;
+
+        h1 {
+            font-size: fluid-unit(60px);
+            margin-bottom: 3.5rem;
+        }
     }
 
     .standard-form {
@@ -13,14 +21,24 @@
         .form-fields {
             flex-wrap: nowrap;
             width: 70%;
-            padding: 10px;
+            // padding: 10px;
 
-            // button:not(.browser-default):not(.button),
-            // input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
-            // select,
-            // textarea {
-            //     border: 0;
-            // }
+            button:not(.browser-default):not(.button),
+            input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
+            select,
+            textarea {
+                border-color: transparent;
+                padding-left: 0;
+            }
+        }
+
+        .form-row {
+            margin: 0;
+            padding: fluid-unit(24px) fluid-unit(40px);
+
+            &:not(:last-of-type) {
+                border-right: 1px solid $mystic;
+            }
         }
 
         .form-actions {

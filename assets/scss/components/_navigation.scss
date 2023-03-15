@@ -1,10 +1,57 @@
-$menu-padding: 25px;
+$main-menu-padding: fluid-unit(32px);
 
-.navigation-main {
+.navigation-top {
+    background-color: $downriver;
+
     &__inner {
         align-items: center;
         display: flex;
-        padding: $menu-padding 0;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    &__menu {
+        @include list-reset();
+        display: flex;
+        font-size: fluid-unit(14px);
+        font-weight: 500;
+
+        .menu-item {
+            a {
+                @include link-underline($white);
+                color: $white;
+                display: block;
+                padding: fluid-unit(14);
+            }
+            
+            &.is-active a {
+                background-color: $mystic;
+                color: $downriver;
+            }
+        }
+    }
+
+    &__contact {
+        .button {
+            padding: fluid-unit(14);
+            height: 100%;
+        }
+    }
+
+    &__phone {
+        color: $white;
+        margin-right: fluid-unit(32px);
+    }
+}
+
+.navigation-main {
+    background-color: $white;
+
+    &__inner {
+        align-items: center;
+        display: flex;
+        padding-bottom: $main-menu-padding;
+        padding-top: $main-menu-padding;
         position: relative;
     }
 
@@ -19,6 +66,7 @@ $menu-padding: 25px;
     }
 
     &__search {
+        color: $downriver;
         display: flex;
         justify-content: flex-end;
         margin-left: $gutter-width;
@@ -28,7 +76,7 @@ $menu-padding: 25px;
 .main-menu {
     // Global menu-item styles
     .menu-item {
-        a {
+       > a {
             @include link-underline($denim);
             display: block;
             position: relative;
@@ -39,28 +87,34 @@ $menu-padding: 25px;
         @include list-reset();
         display: flex;
         justify-content: flex-end;
+        font-weight: 500;
 
         > .menu-item {
             > a {
-                padding: 16px;
+                font-size: fluid-unit(17px);
+                padding: fluid-unit(16px);
 
                 &::before {
                     // Offset menu padding
-                    bottom: -#{$menu-padding};
+                    bottom: -#{$main-menu-padding};
                     height: 4px;
                 }
             }
 
             &--has-children {
-                > a::after {
-                    @include vertical-center(absolute);
-                    content: "\f0d7";
-                    font-family: "FontAwesome";
-                    right: 0;
+                > a {
+                    padding-right: fluid-unit(32px);
+
+                    &::after {
+                        @include vertical-center(absolute);
+                        content: "\f0d7";
+                        font-family: "FontAwesome";
+                        right: fluid-unit(16px);
+                    }
                 }
 
                 &.is-active .sub-menu {
-                    height: auto;
+                    transform: scaleY(1);
                     opacity: 1;
                     transition: opacity $default-transition-timing;
                 }
@@ -72,16 +126,16 @@ $menu-padding: 25px;
 .sub-menu {
     background-color: $downriver;
     color: $white;
-    height: 0;
     left: 0;
     opacity: 0;
     position: absolute;
     top: 100%;
+    transform: scaleY(0);
     width: 100vw;
 
     // NOTE - CSS hack to break out of parent container - https://css-tricks.com/full-width-containers-limited-width-parents/#aa-with-known-non-parent-width
-    margin-left: calc(-100vw / 2 + (#{$max-width} - (#{$gutter-width} * 2)) / 2);
-    margin-right: calc(-100vw / 2 + (#{$max-width} - (#{$gutter-width} * 2)) / 2);
+    margin-left: calc(-100vw / 2 + (#{$max-width} / 2));
+    margin-right: calc(-100vw / 2 + (#{$max-width} / 2));
 
     .menu-item {
         display: block;
@@ -100,9 +154,17 @@ $menu-padding: 25px;
 
     &__link {
         border-top: 1px solid $san-juan;
-        display: flex;
-        text-align: center;
-        padding: 25px;
+        display: block;
         margin-top: 25px;
+        padding: 25px;
+        text-align: center;
+
+        i {
+            transition: transform $default-transition-timing;
+        }
+
+        &:hover i {
+            transform: translateX(10px);
+        }
     }
 }

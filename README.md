@@ -23,3 +23,6 @@ SCSS IntelliSense
 ## NOTES
 - Issue requesting data from API using localhost so using a proxy server and caching results (`https://allorigins.win/`)
 - Using `Figtree` font as this is a close replacement for Proxima Nova (adobe font)
+- Added medium font where needed but this is not visible with the replacement font. Could download more fonts or use correct font in the future
+- Desktop sub-menu is using a JS click event to open/close to avoid "tunnelling" from hover states - https://www.smashingmagazine.com/2021/05/frustrating-design-patterns-mega-dropdown-hover-menus/
+- Using Font Awesome for icons, would use icomoon or similar with the actual icons in production
