@@ -1,7 +1,7 @@
 .banner {
     @include background-cover();
     @include image-overlay();
-    background-image: url('/dist/images/specialist-banner.jpg');
+    background-image: url('~/../../images/specialist-banner.jpg');
     padding-bottom: 4.75rem;
     padding-top: 4.75rem;
 

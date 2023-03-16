@@ -11,6 +11,8 @@
 - run `npm run watch` or `yarn watch` to build and start watching for changes
 - run `npm run start` or `yarn start` to run project on `http://127.0.0.1:8000`
 
+**NOTE** `install/build/watch` are not required for simply viewing the site. Use `start` to see the project running on `http://127.0.0.1:8000` or open `index.html` in chrome/edge etc
+
 ## VS code extensions (optional)
 Code spell checker
 CSS peek
