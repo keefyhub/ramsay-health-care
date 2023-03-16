@@ -1,7 +1,8 @@
 class CheckForAnimations {
     constructor(options) {
         const defaults = {
-            offset: 20
+            offset: 20,
+            className: 'animate'
         };
 
         this.options = { ...defaults, ...options };
@@ -16,7 +17,7 @@ class CheckForAnimations {
     }
 
     checkForAnimations() {
-        document.querySelectorAll('[data-behaviour="animate-when-visible"]:not(.animate)').forEach((item) => {
+        document.querySelectorAll(`[data-behaviour="animate-when-visible"]:not(${this.options.className})`).forEach((item) => {
             // Default offset is 20px
             const offset = item.dataset.animationOffSet ? item.dataset.animationOffSet : this.options.offset;
             const animationDelay = item.dataset.animationDelay ? item.dataset.animationDelay : 0;
@@ -27,7 +28,7 @@ class CheckForAnimations {
             }
 
             if (isOnScreen) {
-                item.classList.add('animate');
+                item.classList.add(this.options.className);
             }
         });
     }
