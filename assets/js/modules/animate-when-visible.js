@@ -1,8 +1,9 @@
-class CheckForAnimations {
+class AnimateWhenVisible {
     constructor(options) {
         const defaults = {
             offset: 20,
-            className: 'animate'
+            targetElement: '[data-behaviour="animate-when-visible"]',
+            animationClassName: 'animate'
         };
 
         this.options = { ...defaults, ...options };
@@ -17,7 +18,7 @@ class CheckForAnimations {
     }
 
     checkForAnimations() {
-        document.querySelectorAll(`[data-behaviour="animate-when-visible"]:not(${this.options.className})`).forEach((item) => {
+        document.querySelectorAll(`${this.options.targetElement}:not(${this.options.animationClassName})`).forEach((item) => {
             // Default offset is 20px
             const offset = item.dataset.animationOffSet ? item.dataset.animationOffSet : this.options.offset;
             const animationDelay = item.dataset.animationDelay ? item.dataset.animationDelay : 0;
@@ -28,7 +29,7 @@ class CheckForAnimations {
             }
 
             if (isOnScreen) {
-                item.classList.add(this.options.className);
+                item.classList.add(this.options.animationClassName);
             }
         });
     }
@@ -50,4 +51,4 @@ class CheckForAnimations {
     }
 }
 
-module.exports = CheckForAnimations;
+module.exports = AnimateWhenVisible;

@@ -1,8 +1,8 @@
 import RemoveFocusState from "remove-focus-state";
 new RemoveFocusState();
 
-import CheckForAnimations from "./modules/animate-when-visible";
-new CheckForAnimations();
+import AnimateWhenVisible from "./modules/animate-when-visible";
+new AnimateWhenVisible();
 
 require('./modules/main-menu');
 require('./modules/search-results');

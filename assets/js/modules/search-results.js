@@ -17,6 +17,9 @@ const triggerEvent = new Event("buildPagination");
 
 // Set event listener before fetch
 resultsElement.addEventListener("buildPagination", () => {
+    const listItems = document.querySelectorAll(".result-item");
+    const pageCount = Math.ceil(listItems.length / paginationLimit);
+
     getPaginationNumbers();
     setCurrentPage(1);
 
@@ -36,7 +39,7 @@ resultsElement.addEventListener("buildPagination", () => {
     });
 
     lastButton.addEventListener("click", () => {
-        setCurrentPage();
+        setCurrentPage(pageCount);
         scrollToTop();
     });
 
@@ -140,7 +143,7 @@ function enableButton(button) {
 
 function handlePageButtonsStatus(pageNum) {
     const listItems = document.querySelectorAll(".result-item");
-    const currentPage = pageNum;
+    currentPage = pageNum;
     const pageCount = Math.ceil(listItems.length / paginationLimit);
 
     if (currentPage === 1) {
@@ -160,12 +163,12 @@ function handlePageButtonsStatus(pageNum) {
     }
 };
 
-function handleActivePageNumber() {
+function handleActivePageNumber(pageNum) {
     document.querySelectorAll(".pagination-number").forEach((button) => {
         button.classList.remove("active");
         const pageIndex = Number(button.getAttribute("page-index"));
 
-        if (pageIndex == currentPage) {
+        if (pageIndex == pageNum) {
             button.classList.add("active");
         }
     });
@@ -189,7 +192,7 @@ function getPaginationNumbers() {
 function setCurrentPage(pageNum) {
     const listItems = document.querySelectorAll(".result-item");
 
-    handleActivePageNumber();
+    handleActivePageNumber(pageNum);
     handlePageButtonsStatus(pageNum);
     setShowingResultsCount();
 
